@@ -1,0 +1,123 @@
+{
+    "total_exp": 10,
+    "1": {
+        "experiment_name": "drkg",
+        "model": "TransE_l2",
+        "no.": "0",
+        "max_step": 9000,
+        "batch_size": 1000,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 0,
+        "Hits@50": 0,
+        "Hits@100": 1
+    },
+    "2": {
+        "experiment_name": "drkg",
+        "model": "TransE_l2",
+        "no.": "1",
+        "max_step": 9000,
+        "batch_size": 1000,
+        "hidden_dim": 400,
+        "learning_rate": 0.1,
+        "Hits@10": 0,
+        "Hits@50": 0,
+        "Hits@100": 0
+    },
+    "3": {
+        "experiment_name": "drkg",
+        "model": "TransE_l2",
+        "no.": "2",
+        "max_step": 20000,
+        "batch_size": 1000,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 0,
+        "Hits@50": 1,
+        "Hits@100": 3
+    },
+    "4": {
+        "experiment_name": "drkg",
+        "model": "TransE_l2",
+        "no.": "3",
+        "max_step": 50000,
+        "batch_size": 1000,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 1,
+        "Hits@50": 2,
+        "Hits@100": 3
+    },
+    "5": {
+        "experiment_name": "drkg",
+        "model": "TransE_l2",
+        "no.": "4",
+        "max_step": 50000,
+        "batch_size": 1600,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 1,
+        "Hits@50": 4,
+        "Hits@100": 5
+    },
+    "6": {
+        "experiment_name": "drkg",
+        "model": "ComplEx",
+        "no.": "0",
+        "max_step": 50000,
+        "batch_size": 1600,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 1,
+        "Hits@50": 3,
+        "Hits@100": 3
+    },
+    "7": {
+        "experiment_name": "drkg",
+        "model": "DistMult",
+        "no.": "0",
+        "max_step": 50000,
+        "batch_size": 1600,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 1,
+        "Hits@50": 3,
+        "Hits@100": 4
+    },
+    "8": {
+        "experiment_name": "drkg",
+        "model": "TransE_l1",
+        "no.": "2",
+        "max_step": 50000,
+        "batch_size": 1000,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 1,
+        "Hits@50": 3,
+        "Hits@100": 4
+    },
+    "9": {
+        "experiment_name": "drkg",
+        "model": "TransE_l2",
+        "no.": "5",
+        "max_step": 100000,
+        "batch_size": 1600,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 1,
+        "Hits@50": 4,
+        "Hits@100": 5
+    },
+    "10": {
+        "experiment_name": "drkg",
+        "model": "TransE_l2",
+        "no.": "6",
+        "max_step": 50000,
+        "batch_size": 3200,
+        "hidden_dim": 400,
+        "learning_rate": 0.25,
+        "Hits@10": 1,
+        "Hits@50": 3,
+        "Hits@100": 4
+    }
+}
