@@ -4,7 +4,7 @@ import json
 import numpy as np
 #import scikitplot as skplt
 
-EXPERIMENT_NAME="full_drkg"
+EXPERIMENT_NAME="drkg"
 MODEL_NAME="TransE_l2"
 MODEL_NUMBER="6"
 
@@ -12,11 +12,11 @@ MODEL_NUMBER="6"
 with open('records.json', 'r') as f:
     records = json.load(f)
 
-total_exp = record['total_exp']
+total_exp = records['total_exp']
 
 for i in range(total_exp+1)[1:]:
     exp = records[str(i)]
-    name_check = (exp['experiment_name'])==EXPERIMENT_NAME)
+    name_check = (exp['experiment_name']==EXPERIMENT_NAME)
     model_check = (exp['model']==MODEL_NAME)
     number_check = (exp['no.']==MODEL_NUMBER)
     if (name_check and model_check and number_check):
@@ -145,7 +145,7 @@ print(hits_log)
 with open(PATH+'config.json', 'r') as f:
     config = json.load(f)
 
-record['total_exp'] = total_exp+1
+records['total_exp'] = total_exp+1
 
 new_entry = {
     'experiment_name': EXPERIMENT_NAME,
@@ -160,10 +160,10 @@ new_entry = {
     'Hits@100': hits_log['hits100']
 }
 
-record[str(total_exp+1)] = new_entry
+records[str(total_exp+1)] = new_entry
 
 with open('records.json', 'w', encoding='utf-8') as f:
-    json.dump(record, f, ensure_ascii=False, indent=4)
+    json.dump(records, f, ensure_ascii=False, indent=4)
 
 """
 AUROC
