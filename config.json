@@ -1,0 +1,44 @@
+{
+    "global": {
+        "ExperimentName": "drkg"
+    },
+    
+    "make_embedding": {
+    	"Format": "raw_udd_hrt",
+    	"ModelName": "TransE_l2",
+    	"Gamma": 12,
+    	"LR": 0.25,
+    	"HiddenDim": 200,
+    	"MaxStep": 2000,
+    	"BatchSize": 1200,
+    	"NegSampleSize": 200,
+    	"LogInterval": 1000,
+    	"BatchSizeEval": 16,
+    	"NegSampleSizeEval": 10000,
+    	"RegularizationCoef": 1.00E-09,
+    	"GPU": 0,
+    	"NumThreads": 7
+    },
+    
+    "make_query": {
+    	"ModelNumber": 7,
+    	"K": 110
+    },
+
+
+    "prepare_data": {
+        "TrainSize": 0.95,
+        "TestToValidSizeRatio": 0.5,
+        "RandomSeed1": 123,
+        "RandomSeed2": 456
+    },
+
+    "show_embedding": {
+        "n_neighbors": 15,
+        "min_dist": 0.1,
+        "n_components": 2,
+        "metric": "euclidean",
+        "theme": "viridis"
+    }
+
+}
