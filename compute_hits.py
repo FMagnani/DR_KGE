@@ -4,9 +4,12 @@ import json
 import numpy as np
 #import scikitplot as skplt
 
-EXPERIMENT_NAME="drkg"
-MODEL_NAME="TransE_l2"
-MODEL_NUMBER="6"
+with open('config.json', 'r') as f:
+	config = json.load(f)
+
+EXPERIMENT_NAME = conifg["global"]["ExperimentName"]
+MODEL_NAME = config["make_embedding"]["ModelName"]
+MODEL_NUMBER = config["make_query"]["ModelNumber"]
 
 # Check if this result has already been saved
 with open('records.json', 'r') as f:

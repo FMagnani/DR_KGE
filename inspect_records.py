@@ -46,7 +46,8 @@ print(df)
 
 winner_name = str(df["Model"][0])
 winner_idx = str(df.reset_index()["index"][0])
-winner_path = "full_drkg/"+winner_name+"_full_drkg_"+winner_idx+"/"
+dataset = df["Dataset"][0]
+winner_path = dataset+"/"+winner_name+"_"+dataset+"_"+winner_idx+"/"
 winner_hits100 = pd.read_csv(winner_path+"HitsAt100.csv", index_col=0)
 print("\nBest model's predictions:")
 print(winner_hits100)
