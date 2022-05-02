@@ -32,8 +32,32 @@ It's employed the library [dgl-ke](https://github.com/awslabs/dgl-ke) built on t
 ## Instructions - How to use the repo
 The workflow of the program is as follows:
 
-![alt text](https:...)
+![alt text](https://github.com/FMagnani/DR_KGE/blob/master/images/Workflow.png)
 
-### Make embedding and predictions
+### Input files
+It's needed to have defined the dataset and the query in a specific directory, as `drkg`.  
+The graph is represented in an **edgelist** format, i.e. a list of triplets `(source, relation, target)` in which the "sources" and the "targets" are unique identifiers of the nodes, while "relations" are unique identifiers of the class of the edges. In such a way a graph is defined through the list of all its directed and labeled edges. The list of all the nodes and edge's classes present in the graph will be worked out by the algorithm and saved into two files called `entities.tsv` and `relations.tsv`.  
+The dataset must be given into the three files `train.txt`, `test.txt` and `valid.txt`. that are edgelists in tsv format. Due to the fact that an external validation is employed, the `valid.txt` file does **not** contain the validation triplets used for the metric. The metric and validation is all done through the query.  
+The query, that in fact constitues the validation, must be given as three files that list the nodes or relations to combine in all possible ways in order to build the triplets used for the link prediction.  
+
+### Config file
+When make_embedding is run, a new folder in the experiment folder is created. For example, inside `drkg` is created a folder `TransE_l2_drkg_0` meaning that you used the TransE model, over the drkg graph, and that's the first time. If you run it again with TransE, maybe modifying the embedding dimensions, that will be stored in a new folder called `TransE_l2_drkg_1`.  
+In `config.json` are stored the most important hyperparameters:  
+
+| | |
+|---|---|
+| ExperimentName | As "drkg". Name of the directory into which the graph and the query are stored |
+| make_embedding | Details of all these hyperpars [here](https://aws-dglke.readthedocs.io/en/latest/train.html) |
+| make_query, ModelNumber | The number of the folder contatining the embedding over which you want to make the query. For example, for `TransE_l2_drkg_1` the ModelNumber is 1 |
+| make_query, K | The top K scored triplets to save into results. It's set to 110 since we use at most Hits@100 |
+
+### Automatic Pipeline
+Having set `config.json` you can ran the whole pipeline with `main.py`. It simply compiles all the scripts and exectues them.  
+Alternatively, you can run them one by one.  
+The files `make_embedding.py` and `make_query.py` simply read the configuration and execute `make_embedding.sh` and `make_query.sh` respectively. The shell scripts are given as a reference. For other examples see [this](https://github.com/awslabs/dgl-ke/blob/master/notebook-examples/kge_wikimedia.ipynb).  
+The script `compute_hits.py` computes the metric and saves the results into `records.json`, that can be inspected using `inspect_records.py`. The mapping from the compound identifiers and their common names is coded inside the script.  
+
+
+
 
 
