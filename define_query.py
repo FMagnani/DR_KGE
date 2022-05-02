@@ -5,16 +5,12 @@ import json
 """
 Script
 
-Load the list of entity's identifiers and returns 3 files:
-    query_heads: The compounds
-    query_rels: The TREAT relation
-    query_tails: The COVID-related disease entities
+Load the list of entity's identifiers and returns the 3 files:
+    query_heads, query_rels, query_tails
 
-Modify this file in order to define different queries, as:
-    query_heads: compound-related genes
-    query_rels: gene-gene interaction
-    query_tails: genes associated to COVID diseases
-As it's done in DRKG, for example.
+Modify this file in order to define different queries.
+In any case, queries are always 1-hop queries, i.e. link predictions.
+
 """
 
 with open('config.json', 'r') as f:
@@ -85,13 +81,6 @@ query_heads = labels["Type"]=="Compound"
 
 query_tails = labels["Id"].isin(TargetSet)
 query_rels = relations["Id"].isin(RelationSet)
-
-#labels.reset_index()["index"][query_heads].to_csv(EXPERIMENT_NAME+"/query_heads.csv",
-#                                                    index=False, header=False)
-#labels.reset_index()["index"][query_tails].to_csv(EXPERIMENT_NAME+"/query_tails.csv",
-#                                                    index=False, header=False)
-#relations.reset_index()["index"][query_rels].to_csv(EXPERIMENT_NAME+"/query_rels.csv",
-#                                                    index=False, header=False)
 
 # The following defines the query with so called RAW INDEX
 # See https://aws-dglke.readthedocs.io/en/latest/predict.html for details
