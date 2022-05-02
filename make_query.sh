@@ -3,7 +3,7 @@
 # For reference see the following links:
 # https://aws-dglke.readthedocs.io/en/latest/predict.html
 
-EXPERIMENT_NAME="full_drkg"
+EXPERIMENT_NAME="drkg"
 MODEL_NAME="TransE_l2"
 MODEL_NUMBER="6"
 K=1000
