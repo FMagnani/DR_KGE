@@ -12,8 +12,8 @@ The DRKG is made up of 97,055 nodes and 5,869,294 edges, the edges belong to 107
 In order to identify the drugs that could treat the Covid-19 disease, we predict the presence of a relation of kind "treats" (symbol "T") or "Compound treats Disease" (symbol "CtD") from all the compounds to each of the nodes related to a Covid disease (the list of target nodes taken into consideration is the file `query_tails.csv` in folder `drkg`). Since the algorithm assigns a score to these predicitons, we are able to rank the compounds and subsequently compute the metrics Hits@1, Hits@50 and Hits@100.  
 
 ### The metric
-The choice of the metric is related to the real-world application of such a procedure. Currently there are no hints, apart from the intuitions of physicians, on which already approved drugs could be repurposed in order to treat new diseases (or in any case different diseases than the ones they are currently used for). In practice, the community have to screen all of them.  
-Machine Learning hopes to aid in this problem by restricting the focus onto a way smaller number of drugs, that are identified as possible candidates. Therefore, it's important this final set of identified compounds that will be taken into account by the medical community: the corresponding metric is the Hits@K.  
+The choice of the metric is related to the real-world application of such a procedure. Currently there are no hints, apart from the intuitions of physicians, on which already approved drugs could be repurposed in order to treat new diseases (or in any case different diseases than the ones they are currently used for). In practice, the community have to screen all them.  
+Machine Learning hopes to aid in this problem by restricting the focus onto a much smaller number of drugs, that are identified as possible candidates. Therefore, it's important this final set of identified compounds that will be taken into account by the medical community: the corresponding metric is the Hits@K. The "hits" are often defined by the compounds currently under clinical trial (in this case too), but there are other options such as results of High Throughput Screening experiments.
 Another popular metric is the AUROC curve, but in that case all the range of drugs is taken into consideration (and all of them contribute equally to the metric result), while in reality the focus is to prioritize a small number of them.  
 
 ### The query
@@ -36,8 +36,9 @@ It's employed the library [dgl-ke](https://github.com/awslabs/dgl-ke) built on t
 | TransE l2 | 100000 | 1600 | 0.25 | 400 | 1 | 4 | 5 |
 | DistMult | 50000 | 1600 | 0.25 | 400 | 1 | 3 | 4 |
 | TransE l1 | 50000 | 1000 | 0.25 | 400 | 1 | 3 | 4 |
-| TransE l2 | 50000 | 3200 | 0.25 | 400 | 1 | 4 | 5 |
+| TransE l2 | 50000 | 3200 | 0.25 | 400 | 1 | 3 | 4 |
 | ComplEx | 50000 | 1600 | 0.25 | 400 | 1 | 3 | 3 |  
+| TransE l2 | 50000 | 1000 | 0.25 | 400 | 1 | 2 | 3 |
   
 Best model's predictions:
 | Compound Name | Rank | Score*** | Relation 
