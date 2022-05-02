@@ -36,8 +36,5 @@ line_8 = " --regularization_coef "+str(REGULARIZATION_COEF)+" -adv --gamma "+str
 
 command = line_1 + line_2 + line_3 + line_4 + line_5 + line_6 + line_7 + line_8
 
-if EXPERIMENT_NAME=="FB15k-237":
-    command = command + " --test"
-
 subprocess.run(command, shell=True)
 
