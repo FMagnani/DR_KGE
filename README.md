@@ -22,5 +22,18 @@ In this repo many queries are made, scored and finally ranked. They are defined 
 `query_heads`, `query_rels` and `query_tails` define respectively the source nodes, the relations to predict and the target nodes. All the possible combinations of `(source, relation, target)` triplets are scored and ranked. The rank, at the end, is interpreted as applying to the compound (the source node).  
 
 ### The algorithm
+In few words, the algorithm embeds all the nodes and all the edge classes (not the edges, but their classes!). To each node is associated a vector in a vector space, to each class of edges is associated a transformation (as a translation, represented by a vector, or a rotation, represented by a matrix, etc) defined in the vector space in which the nodes are embedded.  
+More details are given in the dedicated paragraph.  
+For a list of the specific models belonging to this class of algorithms, see https://github.com/xinguoxia/KGE.
+
+### Library used
+It's employed the library [dgl-ke](https://github.com/awslabs/dgl-ke) built on the top of [dgl](https://github.com/dmlc/dgl). The main reason for this choice, instead of relying on [PyG](https://github.com/pyg-team/pytorch_geometric) or [pykeen](https://github.com/pykeen/pykeen) that is specific to this kind of knowledge graph embeddings, is speed: dgl-ke allows distributed computation over a GPU and many CPU at the same time. For quite large graphs, as nearly all the biomedical graphs used for drug repurposing, that's a neat advantage.
+
+## Instructions - How to use the repo
+The workflow of the program is as follows:
+
+![alt text](https:...)
+
+### Make embedding and predictions
 
 
