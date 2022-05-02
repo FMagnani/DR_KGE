@@ -23,12 +23,35 @@ In this repo many queries are made, scored and finally ranked. They are defined 
 
 ### The algorithm
 In few words, the algorithm embeds all the nodes and all the edge classes (not the edges, but their classes!). To each node is associated a vector in a vector space, to each class of edges is associated a transformation (as a translation, represented by a vector, or a rotation, represented by a matrix, etc) defined in the vector space in which the nodes are embedded.  
-More details are given in the dedicated paragraph.  
 For a list of the specific models belonging to this class of algorithms, see https://github.com/xinguoxia/KGE.
 
 ### Library used
 It's employed the library [dgl-ke](https://github.com/awslabs/dgl-ke) built on the top of [dgl](https://github.com/dmlc/dgl). The main reason for this choice, instead of relying on [PyG](https://github.com/pyg-team/pytorch_geometric) or [pykeen](https://github.com/pykeen/pykeen) that is specific to this kind of knowledge graph embeddings, is speed: dgl-ke allows distributed computation over a GPU and many CPU at the same time. For quite large graphs, as nearly all the biomedical graphs used for drug repurposing, that's a neat advantage.  
 **IMPORTANT** Actually the dgl-ke library gave me some problems. I couldn't manage to install the *latest*, but I couldn't employ the *stable* (a specific loss function was missing). I manually performed some changes, so the **correct version of dgl-ke to employ for this repo is this: https://github.com/FMagnani/dgl-ke**. Note that it works fine but some code relative to the built-in datasets has been removed.
+
+### Some results obtained  
+| Model | Train Epochs** | Batch Size** | Learning Rate | Embedding Dim | Hits@10 | Hits@50 | Hits@100 |
+|---|---|---|---|---|---|---|---|
+| TransE l2 | 50000 | 1600 | 0.25 | 400 | 1 | 4 | 5 |
+| TransE l2 | 100000 | 1600 | 0.25 | 400 | 1 | 4 | 5 |
+| DistMult | 50000 | 1600 | 0.25 | 400 | 1 | 3 | 4 |
+| TransE l1 | 50000 | 1000 | 0.25 | 400 | 1 | 3 | 4 |
+| TransE l2 | 50000 | 3200 | 0.25 | 400 | 1 | 4 | 5 |
+| ComplEx | 50000 | 1600 | 0.25 | 400 | 1 | 3 | 3 |  
+  
+Best model's predictions:
+| Compound Name | Rank | Score*** | Relation 
+|---|---|---|---|
+| Ribavirin | 3 | -10.33 | Disease::MESH:D045169 | T |
+| Dexamethasone | 11 | -12.59 | Disease::MESH:D045169 | T |
+| Colchicine | 25 | -13.03 | Disease::MESH:D045169 | T |
+| Methylprednisolone | 35 | -13.12 | Disease::MESH:D045169 | T |
+| Deferoxamine | 71 | -13.42 | Disease::MESH:D045169 | T |
+  
+** Train Epochs refers to the Epochs made on each core, Batch Size refers to the batch of data loaded on each core.  
+   The epochs made in total are (Train Epochs) x (Number of Processes = 8 in my setting)  
+  
+*** Score must be close to 0, it's negative since a margin = 10 has been employed   
 
 ## Instructions - How to use the repo
 The workflow of the program is as follows:
@@ -58,8 +81,5 @@ Alternatively, you can run them one by one.
 The files `make_embedding.py` and `make_query.py` simply read the configuration and execute `make_embedding.sh` and `make_query.sh` respectively. The shell scripts are given as a reference. For other examples see [this](https://github.com/awslabs/dgl-ke/blob/master/notebook-examples/kge_wikimedia.ipynb).  
 The script `compute_hits.py` computes the metric and saves the results into `records.json`, that can be inspected using `inspect_records.py`. The mapping from the compound identifiers and their common names is coded inside the script.  
 
-## Algorithm - In more detail
-
-TODO
 
 
