@@ -168,36 +168,3 @@ records[str(total_exp+1)] = new_entry
 with open('records.json', 'w', encoding='utf-8') as f:
     json.dump(records, f, ensure_ascii=False, indent=4)
 
-"""
-AUROC
-
-results["labels"] = results["CompoundId"].isin(validation_data_id)
-
-def compute_rates(df):
-
-    thresholds = np.linspace(df["score"].min(),df["score"].max(), 30)
-
-    tp_rate = []
-    fp_rate = []
-    for t in thresholds:
-        tmp = df["score"]<t
-        df["class"] = tmp.to_list()
-        df = df[:][ df["class"] ]
-
-        N = df.shape[0]
-        if not (N==0):
-            true_pos = df["class"]==df["labels"]
-            tmp = true_pos.shape[0]/N
-            tp_rate.append( tmp )
-            fp_rate.append( 1-tmp )
-
-    return fp_rate, tp_rate
-
-fal_rate, pos_rate = compute_rates(results[["score","labels"]])
-
-print(fal_rate)
-print(pos_rate)
-
-plt.plot(pos_rate, fal_rate, 'o')
-plt.show()
-"""
