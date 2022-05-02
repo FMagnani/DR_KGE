@@ -4,7 +4,7 @@
 # https://aws-dglke.readthedocs.io/en/latest/train.html
 # https://github.com/awslabs/dgl-ke/blob/master/notebook-examples/kge_wikimedia.ipynb
 
-EXPERIMENT_NAME="FB15k-237"
+EXPERIMENT_NAME="drkg"
 FORMAT="raw_udd_hrt"
 # MODEL
 MODEL_NAME="TransE_l2"
