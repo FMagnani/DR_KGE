@@ -1,13 +1,11 @@
 import pandas as pd
 import json
-#import matplotlib.pyplot as plt
 import numpy as np
-#import scikitplot as skplt
 
 with open('config.json', 'r') as f:
 	config = json.load(f)
 
-EXPERIMENT_NAME = conifg["global"]["ExperimentName"]
+EXPERIMENT_NAME = config["global"]["ExperimentName"]
 MODEL_NAME = config["make_embedding"]["ModelName"]
 MODEL_NUMBER = config["make_query"]["ModelNumber"]
 
@@ -26,7 +24,7 @@ for i in range(total_exp+1)[1:]:
         raise ValueError('This results are already saved in "records"!')
 
 
-PATH = EXPERIMENT_NAME+"/"+MODEL_NAME+"_"+EXPERIMENT_NAME+"_"+MODEL_NUMBER+"/"
+PATH = EXPERIMENT_NAME+"/"+MODEL_NAME+"_"+EXPERIMENT_NAME+"_"+str(MODEL_NUMBER)+"/"
 
 # Load results as df in a form like
 #  Rank     CompoundId     score
