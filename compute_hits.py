@@ -36,6 +36,9 @@ scores["CompoundId"] = scores["head"].str.rsplit(pat=":", n=1, expand=True)[1]
 scores = scores.reset_index()
 scores = scores.rename(columns={"index":"Rank"})
 
+# Index is 0-based, while Rank must be 1-based!!!
+scores["Rank"] = scores["Rank"] + 1
+
 validation_data_id = [
     "DB00746",
     "DB05511",
