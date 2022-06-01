@@ -71,7 +71,7 @@ Single models predictions:
 ## Instructions - How to use the repo
 The workflow of the program is as follows:
 
-![alt text](https://github.com/FMagnani/DR_KGE/blob/master/images/Workflow.png)
+![alt text](https://github.com/FMagnani/DR_KGE/blob/master/images/DGLKE_Workflow.png)
 
 ### Needed files
 It's needed to have defined the dataset and the query in a specific directory: `drkg`.  
