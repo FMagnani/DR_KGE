@@ -25,8 +25,14 @@ In few words, the algorithm embeds all the nodes and all the edge classes (not t
 For a list of the specific models belonging to this class of algorithms, see https://github.com/xinguoxia/KGE.
 
 ### Library used
-It's employed the library [dgl-ke](https://github.com/awslabs/dgl-ke) built on the top of [dgl](https://github.com/dmlc/dgl). The main reason for this choice, instead of relying on [PyG](https://github.com/pyg-team/pytorch_geometric) or [pykeen](https://github.com/pykeen/pykeen) that are specific to this kind of algorithms (knowledge graph embeddings), is speed: dgl-ke allows distributed computation over many GPUs and CPUs at the same time. For quite large graphs, as nearly all the biomedical graphs used for drug repurposing, that's a neat advantage.  
-**IMPORTANT** Actually the dgl-ke library gave me some problems. I couldn't manage to install the *latest*, but I couldn't employ the *stable* (a specific loss function was missing). I manually performed some changes, so the **correct version of dgl-ke to employ for this repo is this: https://github.com/FMagnani/dgl-ke**. Note that it works fine but some code relative to the built-in datasets has been removed.
+It's employed the library [dgl-ke](https://github.com/awslabs/dgl-ke) built on the top of [dgl](https://github.com/dmlc/dgl). The main reason for this choice, instead of relying on [PyG](https://github.com/pyg-team/pytorch_geometric) or [pykeen](https://github.com/pykeen/pykeen) that also are specific to this kind of algorithms (knowledge graph embeddings), is speed: dgl-ke allows distributed computation over many GPUs and CPUs at the same time. For quite large graphs, as nearly all the biomedical graphs used for drug repurposing, that's a neat advantage.  
+**IMPORTANT** Actually the dgl-ke library gave me some problems. I couldn't manage to install the *latest*, but I couldn't employ the *stable*. I manually performed some changes, so the **version of dgl-ke tested with this repo is this: https://github.com/FMagnani/dgl-ke**. Note that it works fine but some code relative to the built-in datasets has been removed.  
+In principle, all the code of this repo should work with any dgl-ke installation, but in practice it's different. It could be my bad only, so give a try to the official installation guide before to using the version modified by me for my personal needs.  
+In any case, I have left the yml file for replication in conda, you can try the following:  
+`conda env create -f environment.yml`  
+`git clone hhtps://github.com/FMagnani/dgl-ke.git`  
+`cd dgl-ke/python`  
+`python3 setup.py install`  
 
 ### Some results  
 | Model | Train Epochs** | Batch Size** | Learning Rate | Embedding Dim | Hits@10 | Hits@50 | Hits@100 |
@@ -85,7 +91,3 @@ All the code is to be executed from command line. From the graph to the final me
 2. `bash make_query` (In this case you have to select the folder in which the embedding are stored)  
 3. `python hits.py --model <model name> --folder <folder number>`, e.g. `python hits.py --model TransE L2 --folder 0`  
   
-## Personal opinion
-Graphs are cool. Large graphs are also cool. Anyway, to make embeddings of large graphs is not a cool activity, it quite sucks.  
-Moreover, the Ribavirin, that is always ranked first, is actually present in the training set. So, it's not a real prediction. Leaving that out, these algorithms can predict basically two compunds, that I guess are the most obvious choices, that could be made even without this method. Personally, I also believe that the other ones, the Choloroquine and the Oseltamivir, are there totally by chance.  
-This method sucks applied to this problem. Nonetheless... maybe I could try it on some kind of Pokèmon knowledge graph...
