@@ -30,9 +30,9 @@ dglke_train --dataset $EXPERIMENT_NAME --data_path $EXPERIMENT_NAME$"/" --save_p
 --lr $LR --max_step $MAX_STEP --log_interval $LOG_INTERVAL \
 --hidden_dim $HIDDEN_DIM \
 --batch_size $BATCH_SIZE --neg_sample_size $NEG_SAMPLE_SIZE \
---loss_genre "Logistic" \
 --gpu $GPU --num_thread $NUM_THREADS --mix_cpu_gpu \
 --regularization_coef $REGULARIZATION_COEF \
 -adv \
---gamma $GAMMA # FOR TRANSLATIONAL MODELS
+--gamma $GAMMA \ # FOR TRANSLATIONAL MODELS
+#--loss_genre "Logistic" # ONLY IN LATEST VERSION OF DGL-KE
 
